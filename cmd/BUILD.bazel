@@ -4,6 +4,7 @@ go_library(
     name = "go_default_library",
     srcs = ["main.go"],
     deps = [
+        "//transcript:go_default_library",
     ],
     importpath = "github.com/r351574nc3/transcriptify/cmd",
     visibility = ["//visibility:private"],
