@@ -69,9 +69,9 @@
   <body>
     <div class="page">
       <div class="title">
-	<h1>High School Transcript</h1>
-	<h2>(Grades 8-10)</h2>
-	<h3>Graduation Date: 2024</h3>
+        <h1>High School Transcript</h1>
+        <h2>(Grades 8-10)</h2>
+        <h3>Graduation Date: 2024</h3>
       </div>
       <div class="section">
 	<div>
@@ -96,16 +96,24 @@
 	</div>
       </div>
       <div class="section">
-	<div>
-	  <table>
-	    <tr>
-	      <th>Course of Study - Grade %d</th>
-	      <th>Grade</th>
-	      <th>Credits</th>
-	    </tr>
-	    <tr></tr>
-	  </table>
-	</div>
+        {{- range .GradeYears -}}
+        <div>
+          <table>
+            <tr>
+              <th>Course of Study - Grade {{ .Year }}</th>
+              <th>Grade</th>
+              <th>Credits</th>
+            </tr>
+            {{- range .Courses -}}
+            <tr>
+              <td>{{ .Name }}</td>
+              <td>{{ .Grade }}</td>
+              <td>{{ .Credit }}</td>
+            </tr>
+            {{- end -}}
+          </table>
+        </div>
+        {{- end -}}
       </div>
       <div class="section">
 	<div>
@@ -120,21 +128,21 @@
 	    </tr>
 	    <tr>
 	      <td>GPA</td>
-	      <td>%d</td>
-	      <td>%d</td>
-	      <td>%d</td>
-	      <td>%d</td>
+	      <td>3.75</td>
+	      <td>4.0</td>
+	      <td>4.0</td>
+	      <td>&nbsp;</td>
 	    </tr>
 	    <tr>
 	      <td>Earn</td>
-	      <td>%d</td>
-	      <td>%d</td>
-	      <td>%d</td>
-	      <td>%d</td>
+	      <td>2</td>
+	      <td>9</td>
+	      <td>9</td>
+	      <td>&nbsp;</td>
 	    </tr>
 	    <tr></tr>
 	  </table>
-	</div>
+	</div><br/><br/><br/>
 	<div>
 	  <h3>Cummulative Summary</h3>
 	  <table>
@@ -145,10 +153,10 @@
 	      <td>GPA</td>
 	    </tr>
 	    <tr>
-	      <td>%d</td>
-	      <td>%d</td>
-	      <td>%d</td>
-	      <td>%d</td>
+	      <td>20</td>
+	      <td>&nbsp;</td>
+	      <td>79</td>
+	      <td>3.95</td>
 	    </tr>
 	    <tr></tr>
 	  </table>
@@ -173,7 +181,7 @@
 	    <tr></tr>
 	  </table>
 	</div>
-      </div>
+</div>
       <div style="border: 2px solid #bbbbbb; margin: 0 5 0 2; height: 1in; text-align: bottom; width: 48%; align: bottom;">
 	<br/><br/><br/><br/>
 	<h3 style="text-align: bottom; align: bottom; margin: 0 0 0 0; padding-bottom: 7px">Signature (Office of the registrar)</h3>

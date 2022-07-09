@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "methods.go",
+        "transcript.go",
+        "types.go",
+    ],
+    deps = [
+    ],
+    importpath = "github.com/r351574nc3/transcriptify/transcript",
+    visibility = ["//visibility:public"],
+)
