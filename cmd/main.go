@@ -12,10 +12,12 @@ import (
 )
 
 const (
-	YEAR_COL   = 0
-	COURSE_COL = 1
-	GRADE_COL  = 2
-	CREDIT_COL = 3
+    CALY_COL   = 0
+	YEAR_COL   = 1
+	COURSE_COL = 2
+	GRADE_COL  = 3
+	CREDIT_COL = 4
+	NA         = -1
 )
 
 var (
@@ -45,7 +47,7 @@ func main() {
 			continue
 		}
 
-		year := t.GetGradeYear(record[YEAR_COL])
+		year := t.GetGradeYear(record[YEAR_COL], record[CALY_COL])
 
 		if year == nil {
 			continue // Empty line
@@ -53,7 +55,10 @@ func main() {
 
 		course    := record[COURSE_COL]
 		grade     := record[GRADE_COL]
-		credit, _ := strconv.Atoi(record[CREDIT_COL])
+		credit, err := strconv.Atoi(record[CREDIT_COL])
+		if err != nil {
+			credit = NA
+		}
 
 		var c *transcript.Course
 		c = c.New()
@@ -61,7 +66,9 @@ func main() {
 		c.Grade  = grade
 		c.Credit = credit
 		year.Append(c)
+		year.Recalc()
 	}
+	t.Recalc( )
 	t.Process("tmpl/transcript.html.tmpl")
 
 	if err := csvFile.Close(); err != nil {
