@@ -108,7 +108,7 @@
             <tr>
               <td>{{ .Name }}</td>
               <td>{{ .Grade }}</td>
-              <td>{{ .Credit }}</td>
+              <td>{{- if (lt .Credit 0) -}}N/A{{- else -}}{{ .Credit }}{{- end -}}</td>
             </tr>
             {{- end -}}
           </table>
@@ -121,24 +121,21 @@
 	  <table>
 	    <tr>
 	      <td>Year</td>
-	      <td>2019</td>
-	      <td>2020</td>
-	      <td>2021</td>
-	      <td>2022</td>
+        {{- range .GradeYears -}}
+	      <td>{{ .CalendarYear }}</td>
+        {{- end -}}
 	    </tr>
 	    <tr>
 	      <td>GPA</td>
-	      <td>3.75</td>
-	      <td>4.0</td>
-	      <td>4.0</td>
-	      <td>&nbsp;</td>
+        {{- range .GradeYears }}
+	      <td>{{ .GPA }}</td>
+        {{- end }}
 	    </tr>
 	    <tr>
 	      <td>Earn</td>
-	      <td>2</td>
-	      <td>9</td>
-	      <td>9</td>
-	      <td>&nbsp;</td>
+        {{- range .GradeYears }}
+	      <td>{{ .Earn }}</td>
+        {{- end }}
 	    </tr>
 	    <tr></tr>
 	  </table>
@@ -148,15 +145,13 @@
 	  <table>
 	    <tr>
 	      <td>Total Credits</td>
-	      <td>GPA Credits</td>
 	      <td>GPA Points</td>
 	      <td>GPA</td>
 	    </tr>
 	    <tr>
-	      <td>20</td>
-	      <td>&nbsp;</td>
-	      <td>79</td>
-	      <td>3.95</td>
+	      <td>{{.TotalCredits}}</td>
+	      <td>{{.GpaPoints}}</td>
+	      <td>{{.Gpa}}</td>
 	    </tr>
 	    <tr></tr>
 	  </table>
